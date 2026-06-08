@@ -11,4 +11,4 @@ my GitHub first project
 im taking this course to help better and understand more about coding.
 
 ## What I Want to Build
-i would like to build a gamecf 
+i would like to build a game
