@@ -5,15 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juan Pablo's Website</title>
     <style>
-      body { font-family: Arial, sans-serif; max-width: 800px;
-             margin: 0 auto; padding: 20px; background: #f5f5f5; }
-      h1   { color: #1F4E79; }
-      h2   { color: #2E75B6; border-bottom: 2px solid #2E75B6; }
-      p    { line-height: 1.6; }
+      :root {
+        --bg-color: #f5f5f5;
+        --text-color: #333333;
+        --h1-color: #1F4E79;
+        --h2-color: #2E75B6;
+        --card-bg: #ffffff;
+        --btn-bg: #2E75B6;
+        --btn-text: #ffffff;
+      }
+
+      [data-theme="dark"] {
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --h1-color: #4ea8de;
+        --h2-color: #90e0ef;
+        --card-bg: #1e1e1e;
+        --btn-bg: #90e0ef;
+        --btn-text: #121212;
+      }
+
+      body { 
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; 
+        max-width: 800px;
+        margin: 0 auto; 
+        padding: 20px; 
+        background: var(--bg-color); 
+        color: var(--text-color);
+        transition: background 0.3s, color 0.3s;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      h1 { color: var(--h1-color); }
+      h2 { color: var(--h2-color); border-bottom: 2px solid var(--h2-color); padding-bottom: 5px; }
+      p, li { line-height: 1.6; }
+      ul { padding-left: 20px; }
+      li { margin-bottom: 12px; }
+      
+      a { color: var(--h2-color); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      .theme-btn {
+        background: var(--btn-bg);
+        color: var(--btn-text);
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+        font-family: inherit;
+        transition: background 0.3s;
+      }
     </style>
   </head>
   <body>
-    <h1>Hi, I'm Juan Pablo!</h1>
+    <header>
+      <h1>Hi, I'm Juan Pablo!</h1>
+      <button class="theme-btn" id="themeToggle">Toggle Dark Mode</button>
+    </header>
  
     <h2>About Me</h2>
     <p>I'm very talkative and I love animals, especially dogs.</p>
@@ -35,5 +89,18 @@
             A custom-designed engineering model hosted on the Onshape CAD platform featuring detailed workspace geometry.
         </li>
     </ul>
+
+    <script>
+      const toggleBtn = document.getElementById('themeToggle');
+      toggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+          document.documentElement.removeAttribute('data-theme');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      });
+    </script>
   </body>
 </html>
+
