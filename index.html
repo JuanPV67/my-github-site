@@ -1,80 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juan Pablo's Website</title>
+    <!-- Google Fonts for Futuristic Look -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
       :root {
-        --bg-color: #f5f5f5;
-        --text-color: #333333;
-        --h1-color: #1F4E79;
-        --h2-color: #2E75B6;
-        --card-bg: #ffffff;
-        --btn-bg: #2E75B6;
+        /* Light Cyberpunk Theme */
+        --bg-color: #f0f4f8;
+        --grid-color: rgba(0, 180, 216, 0.05);
+        --text-color: #1a202c;
+        --h1-color: #0077b6;
+        --h2-color: #00b4d8;
+        --accent-glow: 0 0 10px rgba(0, 180, 216, 0.3);
+        --card-bg: rgba(255, 255, 255, 0.8);
+        --btn-bg: #00b4d8;
         --btn-text: #ffffff;
+        --border-color: #00b4d8;
       }
 
       [data-theme="dark"] {
-        --bg-color: #121212;
-        --text-color: #e0e0e0;
-        --h1-color: #4ea8de;
-        --h2-color: #90e0ef;
-        --card-bg: #1e1e1e;
-        --btn-bg: #90e0ef;
-        --btn-text: #121212;
+        /* Dark Sci-Fi Theme */
+        --bg-color: #0a0a12;
+        --grid-color: rgba(0, 245, 212, 0.07);
+        --text-color: #e0e0ff;
+        --h1-color: #00f5d4;
+        --h2-color: #7b2cbf;
+        --accent-glow: 0 0 15px rgba(0, 245, 212, 0.6);
+        --card-bg: rgba(16, 16, 32, 0.75);
+        --btn-bg: #00f5d4;
+        --btn-text: #0a0a12;
+        --border-color: #00f5d4;
       }
 
       body { 
-        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; 
+        font-family: 'Rajdhani', sans-serif; 
+        font-size: 1.2rem;
         max-width: 800px;
         margin: 0 auto; 
-        padding: 20px; 
-        background: var(--bg-color); 
+        padding: 40px 20px; 
+        background-color: var(--bg-color); 
+        /* Animated Matrix Grid Background */
+        background-image: 
+          linear-gradient(var(--grid-color) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+        background-size: 30px 30px;
         color: var(--text-color);
-        transition: background 0.3s, color 0.3s;
+        transition: background 0.4s, color 0.4s;
+        animation: gridMove 20s linear infinite;
+      }
+
+      @keyframes gridMove {
+        from { background-position: 0 0; }
+        to { background-position: 0 1000px; }
       }
 
       header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-bottom: 2px dashed var(--border-color);
+        padding-bottom: 20px;
+        margin-bottom: 30px;
       }
 
-      h1 { color: var(--h1-color); }
-      h2 { color: var(--h2-color); border-bottom: 2px solid var(--h2-color); padding-bottom: 5px; }
+      h1, h2 {
+        font-family: 'Orbitron', sans-serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      h1 { 
+        color: var(--h1-color); 
+        text-shadow: var(--accent-glow);
+        margin: 0;
+      }
+
+      h2 { 
+        color: var(--h1-color); 
+        border-left: 4px solid var(--border-color); 
+        padding-left: 15px; 
+        margin-top: 40px;
+        background: linear-gradient(90deg, var(--card-bg), transparent);
+      }
+
       p, li { line-height: 1.6; }
-      ul { padding-left: 20px; }
+      
+      /* Tech UI Container Styles */
+      p, ul {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      }
+
+      ul { padding-left: 40px; }
       li { margin-bottom: 12px; }
       
-      a { color: var(--h2-color); text-decoration: none; }
-      a:hover { text-decoration: underline; }
+      a { 
+        color: var(--btn-bg); 
+        text-decoration: none; 
+        font-weight: bold;
+        transition: all 0.3s;
+      }
 
+      a:hover { 
+        text-shadow: var(--accent-glow);
+        color: #ffffff;
+      }
+
+      /* Futuristic Toggle Button */
       .theme-btn {
-        background: var(--btn-bg);
-        color: var(--btn-text);
-        border: none;
-        padding: 8px 16px;
-        border-radius: 20px;
+        background: transparent;
+        color: var(--btn-bg);
+        border: 2px solid var(--border-color);
+        padding: 10px 20px;
+        border-radius: 0px; /* Sharp technical edges */
+        clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); /* Angular cuts */
         cursor: pointer;
         font-weight: bold;
-        font-family: inherit;
-        transition: background 0.3s;
+        font-family: 'Orbitron', sans-serif;
+        transition: all 0.3s;
+        box-shadow: var(--accent-glow);
+      }
+
+      .theme-btn:hover {
+        background: var(--btn-bg);
+        color: var(--btn-text);
+        box-shadow: 0 0 25px var(--btn-bg);
       }
     </style>
   </head>
   <body>
     <header>
       <h1>Hi, I'm Juan Pablo!</h1>
-      <button class="theme-btn" id="themeToggle">Toggle Dark Mode</button>
+      <button class="theme-btn" id="themeToggle">SYSTEM TOGGLE</button>
     </header>
  
     <h2>About Me</h2>
-    <p>I'm very talkative and I love animals, especially dogs, im 14 years old,i go to energy tech high school, i want to be a police officer in the future </p>
+    <p>I'm very talkative and I love animals, especially dogs. I'm 14 years old and I go to Energy Tech High School. I want to be a police officer in the future.</p>
  
     <h2>My Interests</h2>
     <ul>
-      <li<p>I enjoy exploring new places, exercising, and talking to people.</p>
+      <li>I enjoy exploring new places, exercising, and talking to people.</li>
     </ul>
  
     <h2>My Goals for This Course</h2>
@@ -83,11 +158,11 @@
     <h2>My Projects</h2>
     <ul>
         <li>
-            <strong><a href="https://github.com/JuanPV67" target="_blank" rel="noopener noreferrer">JuanPV67 GitHub Profile</a></strong>: 
+            <strong><a href="https://github.com" target="_blank" rel="noopener noreferrer">JuanPV67 GitHub Profile</a></strong>: 
             A development hub containing software repositories, personal coding codebases, and active programming projects.
         </li>
         <li>
-            <strong><a href="https://cad.onshape.com/documents/b18c2532541c7c7b602d2371/w/7d14ce80e6902fbb6d5a9218/e/8e9744423bfd4548c0502ea1?renderMode=0&uiState=6a2c22ffa9192702fd32ff65" target="_blank" rel="noopener noreferrer">My Card 3D Model</a></strong>: 
+            <strong><a href="https://onshape.com" target="_blank" rel="noopener noreferrer">My Card 3D Model</a></strong>: 
             A custom-designed engineering model hosted on the Onshape CAD platform featuring detailed workspace geometry.
         </li>
     </ul>
@@ -97,7 +172,7 @@
       toggleBtn.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         if (currentTheme === 'dark') {
-          document.documentElement.removeAttribute('data-theme');
+          document.documentElement.setAttribute('data-theme', 'light');
         } else {
           document.documentElement.setAttribute('data-theme', 'dark');
         }
@@ -105,4 +180,6 @@
     </script>
   </body>
 </html>
+
+
 
